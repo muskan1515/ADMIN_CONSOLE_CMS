@@ -145,7 +145,7 @@ const Sidebar = () => {
                                     <li className="nav-item">
                                         <Link href="/finance" className="group">
                                             <div className="flex items-center">
-                                                <IconMenuChat className="shrink-0 group-hover:!text-primary" />
+                                                <IconMenuDashboard className="shrink-0 group-hover:!text-primary" />
                                                 <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">{t('Dashboard')}</span>
                                             </div>
                                         </Link>
@@ -153,7 +153,7 @@ const Sidebar = () => {
                                     <li className="nav-item">
                                         <Link href="/change-logo" className="group">
                                             <div className="flex items-center">
-                                                <IconMenuChat className="shrink-0 group-hover:!text-primary" />
+                                                <IconMenuAuthentication className="shrink-0 group-hover:!text-primary" />
                                                 <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">{t('Change Logo')}</span>
                                             </div>
                                         </Link>
@@ -161,8 +161,16 @@ const Sidebar = () => {
                                     <li className="nav-item">
                                         <Link href="/change-website-url" className="group">
                                             <div className="flex items-center">
-                                                <IconMenuChat className="shrink-0 group-hover:!text-primary" />
+                                                <IconMenuPages className="shrink-0 group-hover:!text-primary" />
                                                 <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">{t('Change Website URL')}</span>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link href="/manage-cards" className="group">
+                                            <div className="flex items-center">
+                                                <IconMenuForms className="shrink-0 group-hover:!text-primary" />
+                                                <span className="text-black ltr:pl-3 rtl:pr-3 dark:text-[#506690] dark:group-hover:text-white-dark">{t('Manage Cards')}</span>
                                             </div>
                                         </Link>
                                     </li>
