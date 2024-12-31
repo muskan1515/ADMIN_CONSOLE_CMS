@@ -6,6 +6,10 @@ import IconFile from '@/components/icon/icon-file';
 import IconEdit from '@/components/icon/icon-edit';
 import IconTrash from '@/components/icon/icon-trash';
 import IconPrinter from '@/components/icon/icon-printer';
+import { Transition, Dialog, Tab, DialogPanel, TransitionChild } from '@headlessui/react';
+import IconX from '@/components/icon/icon-x';
+import React, { Fragment, useRef } from 'react';
+import IconUser from '@/components/icon/icon-user';
 
 const rowData = [
     {
@@ -39,6 +43,8 @@ const ComponentsDatatablesExport = () => {
     const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
     const [initialRecords, setInitialRecords] = useState(sortBy(rowData, 'id'));
     const [recordsData, setRecordsData] = useState(initialRecords);
+
+    const [modal21, setModal21] = useState(false);
 
     const [search, setSearch] = useState('');
     const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({
@@ -201,79 +207,270 @@ const ComponentsDatatablesExport = () => {
             .join(' ');
     };
     return (
-        <div className="panel mt-6">
-            <div className="mb-4.5 flex flex-col justify-between gap-5 md:flex-row md:items-center">
-                <div className="flex flex-wrap items-center">
-                    <button type="button" onClick={() => exportTable('csv')} className="btn btn-primary btn-sm m-1 ">
-                        <IconFile className="h-5 w-5 ltr:mr-2 rtl:ml-2" />
-                        CSV
-                    </button>
-                    <button type="button" onClick={() => exportTable('txt')} className="btn btn-primary btn-sm m-1">
-                        <IconFile className="h-5 w-5 ltr:mr-2 rtl:ml-2" />
-                        TXT
-                    </button>
-
-                    <button type="button" onClick={() => exportTable('print')} className="btn btn-primary btn-sm m-1">
-                        <IconPrinter className="ltr:mr-2 rtl:ml-2" />
-                        PRINT
-                    </button>
-                </div>
-
-                <input type="text" className="form-input w-auto" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
+        <div>
+            {/* Add Header */}
+            <div className="mt-3" style={{ display: 'flex', justifyContent: 'end' }}>
+                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                    + Add Header
+                </button>
+                <Transition appear show={modal21} as={Fragment}>
+                    <Dialog
+                        as="div"
+                        open={modal21}
+                        onClose={() => {
+                            setModal21(false);
+                        }}
+                    >
+                        <TransitionChild
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                        >
+                            <div className="fixed inset-0" />
+                        </TransitionChild>
+                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                            <div className="flex min-h-screen items-start justify-center px-4">
+                                <TransitionChild
+                                    as={Fragment}
+                                    enter="ease-out duration-300"
+                                    enterFrom="opacity-0 scale-95"
+                                    enterTo="opacity-100 scale-100"
+                                    leave="ease-in duration-200"
+                                    leaveFrom="opacity-100 scale-100"
+                                    leaveTo="opacity-0 scale-95"
+                                >
+                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                            <h5>Add Header</h5>
+                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                <IconX />
+                                            </button>
+                                        </div>
+                                        <div className="p-5">
+                                            <form>
+                                                <div className="relative mb-4">
+                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                        <IconUser className="h-5 w-5" />
+                                                    </span>
+                                                    <input type="text" placeholder="Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                </div>
+                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                <button type="button" className="btn btn-primary w-full">
+                                                    Submit
+                                                </button>
+                                            </form>
+                                        </div>
+                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                    </DialogPanel>
+                                </TransitionChild>
+                            </div>
+                        </div>
+                    </Dialog>
+                </Transition>
             </div>
-            <div className="datatables">
-                <DataTable
-                    highlightOnHover
-                    className="table-hover whitespace-nowrap"
-                    records={recordsData}
-                    columns={[
-                        { accessor: 'id', title: '#', sortable: true },
-                        { accessor: 'firstName', sortable: true },
-                        { accessor: 'lastName', sortable: true },
-                        { accessor: 'company', title: 'Company', sortable: true },
-                        { accessor: 'age', title: 'Age', sortable: true },
-                        {
-                            accessor: 'dob',
-                            title: 'Start Date',
-                            sortable: true,
-                            render: ({ dob }) => <div>{formatDate(dob)}</div>,
-                        },
-                        { accessor: 'email', sortable: true },
-                        { accessor: 'phone', sortable: true },
-                        {
-                            accessor: 'action',
-                            title: 'Action',
-                            render: ({ id }) => (
-                                <div className="flex items-center gap-2">
-                                    <button
-                                        type="button"
-                                        // onClick={() => handleEdit(id)}
-                                        className="btn btn-icon btn-sm"
-                                    >
-                                        <IconEdit className="h-5 w-5 text-blue-500" />
-                                    </button>
-                                    <button
-                                        type="button"
-                                        // onClick={() => handleDelete(id)}
-                                        className="btn btn-icon btn-sm"
-                                    >
-                                        <IconTrash className="h-5 w-5 text-red-500" />
-                                    </button>
-                                </div>
-                            ),
-                        },
-                    ]}
-                    totalRecords={initialRecords.length}
-                    recordsPerPage={pageSize}
-                    page={page}
-                    onPageChange={(p) => setPage(p)}
-                    recordsPerPageOptions={PAGE_SIZES}
-                    onRecordsPerPageChange={setPageSize}
-                    sortStatus={sortStatus}
-                    onSortStatusChange={setSortStatus}
-                    minHeight={200}
-                    paginationText={({ from, to, totalRecords }) => `Showing  ${from} to ${to} of ${totalRecords} entries`}
-                />
+
+            <div className="panel mt-6">
+                <div className="mb-4.5 flex flex-col justify-between gap-5 md:flex-row md:items-center">
+                    <div className="flex flex-wrap items-center">
+                        <button type="button" onClick={() => exportTable('csv')} className="btn btn-primary btn-sm m-1 ">
+                            <IconFile className="h-5 w-5 ltr:mr-2 rtl:ml-2" />
+                            CSV
+                        </button>
+                        <button type="button" onClick={() => exportTable('txt')} className="btn btn-primary btn-sm m-1">
+                            <IconFile className="h-5 w-5 ltr:mr-2 rtl:ml-2" />
+                            TXT
+                        </button>
+
+                        <button type="button" onClick={() => exportTable('print')} className="btn btn-primary btn-sm m-1">
+                            <IconPrinter className="ltr:mr-2 rtl:ml-2" />
+                            PRINT
+                        </button>
+                    </div>
+
+                    <input type="text" className="form-input w-auto" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
+                </div>
+                <div className="datatables">
+                    <DataTable
+                        highlightOnHover
+                        className="table-hover whitespace-nowrap"
+                        records={recordsData}
+                        columns={[
+                            { accessor: 'id', title: '#', sortable: true },
+                            { accessor: 'firstName', sortable: true },
+                            { accessor: 'lastName', sortable: true },
+                            { accessor: 'company', title: 'Company', sortable: true },
+                            { accessor: 'age', title: 'Age', sortable: true },
+                            {
+                                accessor: 'dob',
+                                title: 'Start Date',
+                                sortable: true,
+                                render: ({ dob }) => <div>{formatDate(dob)}</div>,
+                            },
+                            { accessor: 'email', sortable: true },
+                            { accessor: 'phone', sortable: true },
+                            {
+                                accessor: 'action',
+                                title: 'Action',
+                                render: ({ id }) => (
+                                    <div className="flex items-center gap-2">
+
+                                        <div>
+                                            <button type="button" onClick={() => setModal21(true)} className="btn btn-icon btn-sm">
+                                                <IconEdit className="h-5 w-5 text-blue-500" />
+                                            </button>
+                                            <Transition appear show={modal21} as={Fragment}>
+                                                <Dialog
+                                                    as="div"
+                                                    open={modal21}
+                                                    onClose={() => {
+                                                        setModal21(false);
+                                                    }}
+                                                >
+                                                    <TransitionChild
+                                                        as={Fragment}
+                                                        enter="ease-out duration-300"
+                                                        enterFrom="opacity-0"
+                                                        enterTo="opacity-100"
+                                                        leave="ease-in duration-200"
+                                                        leaveFrom="opacity-100"
+                                                        leaveTo="opacity-0"
+                                                    >
+                                                        <div className="fixed inset-0" />
+                                                    </TransitionChild>
+                                                    <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                                        <div className="flex min-h-screen items-start justify-center px-4">
+                                                            <TransitionChild
+                                                                as={Fragment}
+                                                                enter="ease-out duration-300"
+                                                                enterFrom="opacity-0 scale-95"
+                                                                enterTo="opacity-100 scale-100"
+                                                                leave="ease-in duration-200"
+                                                                leaveFrom="opacity-100 scale-100"
+                                                                leaveTo="opacity-0 scale-95"
+                                                            >
+                                                                <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                                    <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                                        <h5>Add Header</h5>
+                                                                        <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                            <IconX />
+                                                                        </button>
+                                                                    </div>
+                                                                    <div className="p-5">
+                                                                        <form>
+                                                                            <div className="relative mb-4">
+                                                                                <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                                    <IconUser className="h-5 w-5" />
+                                                                                </span>
+                                                                                <input type="text" placeholder="Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                            </div>
+                                                                            {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                                            <button type="button" className="btn btn-primary w-full">
+                                                                                Submit
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                    {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                                    {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                                                    {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                                                </DialogPanel>
+                                                            </TransitionChild>
+                                                        </div>
+                                                    </div>
+                                                </Dialog>
+                                            </Transition>
+                                        </div>
+
+                                        {/* <button
+                                            type="button"
+                                            // onClick={() => handleEdit(id)}
+                                            className="btn btn-icon btn-sm"
+                                        >
+                                            <IconEdit className="h-5 w-5 text-blue-500" />
+                                        </button> */}
+
+                                        <button
+                                            type="button"
+                                            // onClick={() => handleDelete(id)}
+                                            className="btn btn-icon btn-sm"
+                                        >
+                                            <IconTrash className="h-5 w-5 text-red-500" />
+                                        </button>
+                                    </div>
+                                ),
+                            },
+                        ]}
+                        totalRecords={initialRecords.length}
+                        recordsPerPage={pageSize}
+                        page={page}
+                        onPageChange={(p) => setPage(p)}
+                        recordsPerPageOptions={PAGE_SIZES}
+                        onRecordsPerPageChange={setPageSize}
+                        sortStatus={sortStatus}
+                        onSortStatusChange={setSortStatus}
+                        minHeight={200}
+                        paginationText={({ from, to, totalRecords }) => `Showing  ${from} to ${to} of ${totalRecords} entries`}
+                    />
+                </div>
             </div>
         </div>
     );

@@ -41,7 +41,6 @@ import IconAt from '@/components/icon/icon-at';
 import IconX from '@/components/icon/icon-x';
 import IconLock from '@/components/icon/icon-lock';
 
-
 const ComponentsWidgets = () => {
     const isDark = useSelector((state: IRootState) => state.themeConfig.theme === 'dark' || state.themeConfig.isDarkMode);
     const isRtl = useSelector((state: IRootState) => state.themeConfig.rtlClass) === 'rtl' ? true : false;
@@ -52,7 +51,6 @@ const ComponentsWidgets = () => {
     });
 
     const [modal21, setModal21] = useState(false);
-    
 
     //Revenue Chart
     const revenueChart: any = {
@@ -739,135 +737,106 @@ const ComponentsWidgets = () => {
     return (
         <div>
             <div className="panel flex items-center overflow-x-auto whitespace-nowrap p-3 text-primary">
-                {/* <div className="rounded-full bg-primary p-1.5 text-white ring-2 ring-primary/30 ltr:mr-3 rtl:ml-3">
-        <IconBell />
-    </div> */}
                 <h2 className="ltr:mr-3 rtl:ml-3">Card Management System </h2>
             </div>
-            <div className="mt-6">
-                {/* <div className="mb-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <div className="panel h-full sm:col-span-2 lg:col-span-1">
-                        <div className="mb-5 flex justify-between dark:text-white-light">
-                            <h5 className="text-lg font-semibold ">Statistics</h5>
-                            <div className="dropdown">
-                                <Dropdown
-                                    offset={[0, 5]}
-                                    placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
-                                    btnClassName="hover:text-primary"
-                                    button={<IconHorizontalDots className="text-black/70 hover:!text-primary dark:text-white/70" />}
-                                >
-                                    <ul>
-                                        <li>
-                                            <button type="button">This Week</button>
-                                        </li>
-                                        <li>
-                                            <button type="button">Last Week</button>
-                                        </li>
-                                        <li>
-                                            <button type="button">This Month</button>
-                                        </li>
-                                        <li>
-                                            <button type="button">Last Month</button>
-                                        </li>
-                                    </ul>
-                                </Dropdown>
-                            </div>
-                        </div>
-                        <div className="grid gap-8 text-sm font-bold text-[#515365] sm:grid-cols-2">
-                            <div>
-                                <div>
-                                    <div>Total Visits</div>
-                                    <div className="text-lg text-[#f8538d]">423,964</div>
-                                </div>
-                                {isMounted && <ReactApexChart series={totalVisit.series} options={totalVisit.options} type="line" height={58} width={'100%'} />}
-                            </div>
 
-                            <div>
-                                <div>
-                                    <div>Paid Visits</div>
-                                    <div className="text-lg text-[#f8538d]">7,929</div>
-                                </div>
-
-                                {isMounted && <ReactApexChart series={paidVisit.series} options={paidVisit.options} type="line" height={58} width={'100%'} />}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="panel h-full">
-                        <div className="mb-5 flex justify-between dark:text-white-light">
-                            <h5 className="text-lg font-semibold ">Expenses</h5>
-
-                            <div className="dropdown">
-                                <Dropdown
-                                    offset={[0, 5]}
-                                    placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
-                                    btnClassName="hover:text-primary"
-                                    button={<IconHorizontalDots className="text-black/70 hover:!text-primary dark:text-white/70" />}
-                                >
-                                    <ul>
-                                        <li>
-                                            <button type="button">This Week</button>
-                                        </li>
-                                        <li>
-                                            <button type="button">Last Week</button>
-                                        </li>
-                                        <li>
-                                            <button type="button">This Month</button>
-                                        </li>
-                                        <li>
-                                            <button type="button">Last Month</button>
-                                        </li>
-                                    </ul>
-                                </Dropdown>
-                            </div>
-                        </div>
-                        <div className=" my-10 text-3xl font-bold text-[#e95f2b]">
-                            <span>$ 45,141 </span>
-                            <span className="text-sm text-black dark:text-white-light ltr:mr-2 rtl:ml-2">this week</span>
-                            <IconTrendingUp className="inline text-success" />
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <div className="h-5 w-full overflow-hidden rounded-full bg-dark-light p-1 shadow-3xl dark:bg-dark-light/10 dark:shadow-none">
-                                <div
-                                    className="relative h-full w-full rounded-full bg-gradient-to-r from-[#4361ee] to-[#805dca] before:absolute before:inset-y-0 before:m-auto before:h-2 before:w-2 before:rounded-full before:bg-white ltr:before:right-0.5 rtl:before:left-0.5"
-                                    style={{ width: '65%' }}
-                                ></div>
-                            </div>
-                            <span className="dark:text-white-light ltr:ml-5 rtl:mr-5">57%</span>
-                        </div>
-                    </div>
-
-                    <div
-                        className="panel grid h-full grid-cols-1 content-between overflow-hidden before:absolute before:-right-44 before:bottom-0 before:top-0 before:m-auto before:h-96 before:w-96 before:rounded-full before:bg-[#1937cc]"
-                        style={{
-                            background: 'linear-gradient(0deg,#00c6fb -227%,#005bea)',
+            {/* Add Card */}
+            <div className="mt-3" style={{ display: 'flex', justifyContent: 'end' }}>
+                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                    + Add Card
+                </button>
+                <Transition appear show={modal21} as={Fragment}>
+                    <Dialog
+                        as="div"
+                        open={modal21}
+                        onClose={() => {
+                            setModal21(false);
                         }}
                     >
-                        <div className="z-[7] mb-6 flex items-start justify-between text-white-light">
-                            <h5 className="text-lg font-semibold">Total Balance</h5>
-
-                            <div className="relative whitespace-nowrap text-xl">
-                                $ 41,741.42
-                                <span className="mt-1 table rounded bg-[#4361ee] p-1 text-xs text-[#d3d3d3] ltr:ml-auto rtl:mr-auto">+ 2453</span>
+                        <TransitionChild
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                        >
+                            <div className="fixed inset-0" />
+                        </TransitionChild>
+                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                            <div className="flex min-h-screen items-start justify-center px-4">
+                                <TransitionChild
+                                    as={Fragment}
+                                    enter="ease-out duration-300"
+                                    enterFrom="opacity-0 scale-95"
+                                    enterTo="opacity-100 scale-100"
+                                    leave="ease-in duration-200"
+                                    leaveFrom="opacity-100 scale-100"
+                                    leaveTo="opacity-0 scale-95"
+                                >
+                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                            <h5>Add Cards</h5>
+                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                <IconX />
+                                            </button>
+                                        </div>
+                                        <div className="p-5">
+                                            <form>
+                                                <div className="relative mb-4">
+                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                        <IconUser className="h-5 w-5" />
+                                                    </span>
+                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                </div>
+                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                <button type="button" className="btn btn-primary w-full">
+                                                    Submit
+                                                </button>
+                                            </form>
+                                        </div>
+                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                    </DialogPanel>
+                                </TransitionChild>
                             </div>
                         </div>
-                        <div className="z-10 flex items-center justify-between">
-                            <div className="flex items-center justify-between">
-                                <button type="button" className="place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc] ltr:mr-2 rtl:ml-2">
-                                    <IconPlus />
-                                </button>
-                                <button type="button" className="grid place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc]">
-                                    <IconCreditCard />
-                                </button>
-                            </div>
-                            <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
-                                Upgrade
-                            </button>
-                        </div>
-                    </div>
-                </div> */}
+                    </Dialog>
+                </Transition>
+            </div>
 
+            <div className="mt-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2">
+
                     {/* Card 1 */}
                     <div
                         className="panel grid h-full grid-cols-1 content-between overflow-hidden relative before:absolute before:-right-44 before:bottom-0 before:top-0 before:m-auto before:h-96 before:w-96 before:rounded-full before:bg-[#1937cc]"
@@ -895,57 +864,57 @@ const ComponentsWidgets = () => {
                                 Update
                             </button> */}
 
-                             {/* Register */}
-                    <div>
-                        <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
-                            Update
-                        </button>
-                        <Transition appear show={modal21} as={Fragment}>
-                            <Dialog
-                                as="div"
-                                open={modal21}
-                                onClose={() => {
-                                    setModal21(false);
-                                }}
-                            >
-                                <TransitionChild
-                                    as={Fragment}
-                                    enter="ease-out duration-300"
-                                    enterFrom="opacity-0"
-                                    enterTo="opacity-100"
-                                    leave="ease-in duration-200"
-                                    leaveFrom="opacity-100"
-                                    leaveTo="opacity-0"
-                                >
-                                    <div className="fixed inset-0" />
-                                </TransitionChild>
-                                <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
-                                    <div className="flex min-h-screen items-start justify-center px-4">
+                            {/* Register */}
+                            <div>
+                                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                                    Update
+                                </button>
+                                <Transition appear show={modal21} as={Fragment}>
+                                    <Dialog
+                                        as="div"
+                                        open={modal21}
+                                        onClose={() => {
+                                            setModal21(false);
+                                        }}
+                                    >
                                         <TransitionChild
                                             as={Fragment}
                                             enter="ease-out duration-300"
-                                            enterFrom="opacity-0 scale-95"
-                                            enterTo="opacity-100 scale-100"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
                                             leave="ease-in duration-200"
-                                            leaveFrom="opacity-100 scale-100"
-                                            leaveTo="opacity-0 scale-95"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
                                         >
-                                            <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
-                                                <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
-                                                    <h5>Update Cards</h5>
-                                                    <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
-                                                        <IconX />
-                                                    </button>
-                                                </div>
-                                                <div className="p-5">
-                                                    <form>
-                                                        <div className="relative mb-4">
-                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
-                                                                <IconUser className="h-5 w-5" />
-                                                            </span>
-                                                            <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                            <div className="fixed inset-0" />
+                                        </TransitionChild>
+                                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                            <div className="flex min-h-screen items-start justify-center px-4">
+                                                <TransitionChild
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 scale-95"
+                                                    enterTo="opacity-100 scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 scale-100"
+                                                    leaveTo="opacity-0 scale-95"
+                                                >
+                                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                            <h5>Update Cards</h5>
+                                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                <IconX />
+                                                            </button>
                                                         </div>
-                                                        {/* <div className="relative mb-4">
+                                                        <div className="p-5">
+                                                            <form>
+                                                                <div className="relative mb-4">
+                                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                        <IconUser className="h-5 w-5" />
+                                                                    </span>
+                                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                </div>
+                                                                {/* <div className="relative mb-4">
                                                             <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
                                                                 <IconAt />
                                                             </span>
@@ -957,13 +926,13 @@ const ComponentsWidgets = () => {
                                                             </span>
                                                             <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
                                                         </div> */}
-                                                        <button type="button" className="btn btn-primary w-full">
-                                                            Submit
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                                {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
-                                                {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                                <button type="button" className="btn btn-primary w-full">
+                                                                    Submit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
                                                     <button type="button" className="btn btn-outline-primary flex gap-1">
                                                         <IconFacebook className="h-5 w-5 shrink-0" />
                                                         <span>Facebook</span>
@@ -973,7 +942,7 @@ const ComponentsWidgets = () => {
                                                         <span>Github</span>
                                                     </button>
                                                 </div> */}
-                                                {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
                                                     <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
                                                         Already have
                                                         <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
@@ -981,15 +950,136 @@ const ComponentsWidgets = () => {
                                                         </button>
                                                     </p>
                                                 </div> */}
-                                            </DialogPanel>
+                                                    </DialogPanel>
+                                                </TransitionChild>
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </Transition>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Card 1 */}
+                    <div
+                        className="panel grid h-full grid-cols-1 content-between overflow-hidden relative before:absolute before:-right-44 before:bottom-0 before:top-0 before:m-auto before:h-96 before:w-96 before:rounded-full before:bg-[#1937cc]"
+                        style={{
+                            background: 'linear-gradient(0deg,#00c6fb -227%,#005bea)',
+                        }}
+                    >
+                        <div className="z-[7] mb-6 items-start justify-between text-white-light">
+                            <h5 className="text-lg font-semibold">Total Balance</h5>
+                            <div className="relative whitespace-nowrap text-xl">
+                                $ 41,741.42
+                                {/* <span className="mt-1 table rounded bg-[#4361ee] p-1 text-xs text-[#d3d3d3] ltr:ml-auto rtl:mr-auto">+ 2453</span> */}
+                            </div>
+                        </div>
+                        <div className="z-10 flex items-center justify-center">
+                            {/* <div className="flex items-center justify-between">
+                                <button type="button" className="place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc] ltr:mr-2 rtl:ml-2">
+                                    <IconPlus />
+                                </button>
+                                <button type="button" className="grid place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc]">
+                                    <IconCreditCard />
+                                </button>
+                            </div> */}
+                            {/* <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
+                                Update
+                            </button> */}
+
+                            {/* Register */}
+                            <div>
+                                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                                    Update
+                                </button>
+                                <Transition appear show={modal21} as={Fragment}>
+                                    <Dialog
+                                        as="div"
+                                        open={modal21}
+                                        onClose={() => {
+                                            setModal21(false);
+                                        }}
+                                    >
+                                        <TransitionChild
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <div className="fixed inset-0" />
                                         </TransitionChild>
-                                    </div>
-                                </div>
-                            </Dialog>
-                        </Transition>
-                    </div>
-
-
+                                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                            <div className="flex min-h-screen items-start justify-center px-4">
+                                                <TransitionChild
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 scale-95"
+                                                    enterTo="opacity-100 scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 scale-100"
+                                                    leaveTo="opacity-0 scale-95"
+                                                >
+                                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                            <h5>Update Cards</h5>
+                                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                <IconX />
+                                                            </button>
+                                                        </div>
+                                                        <div className="p-5">
+                                                            <form>
+                                                                <div className="relative mb-4">
+                                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                        <IconUser className="h-5 w-5" />
+                                                                    </span>
+                                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                </div>
+                                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                                <button type="button" className="btn btn-primary w-full">
+                                                                    Submit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                                    </DialogPanel>
+                                                </TransitionChild>
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </Transition>
+                            </div>
                         </div>
                     </div>
 
@@ -1016,9 +1106,103 @@ const ComponentsWidgets = () => {
                                     <IconCreditCard />
                                 </button>
                             </div> */}
-                            <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
+                            {/* <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
                                 Update
-                            </button>
+                            </button> */}
+
+                            {/* Register */}
+                            <div>
+                                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                                    Update
+                                </button>
+                                <Transition appear show={modal21} as={Fragment}>
+                                    <Dialog
+                                        as="div"
+                                        open={modal21}
+                                        onClose={() => {
+                                            setModal21(false);
+                                        }}
+                                    >
+                                        <TransitionChild
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <div className="fixed inset-0" />
+                                        </TransitionChild>
+                                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                            <div className="flex min-h-screen items-start justify-center px-4">
+                                                <TransitionChild
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 scale-95"
+                                                    enterTo="opacity-100 scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 scale-100"
+                                                    leaveTo="opacity-0 scale-95"
+                                                >
+                                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                            <h5>Update Cards</h5>
+                                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                <IconX />
+                                                            </button>
+                                                        </div>
+                                                        <div className="p-5">
+                                                            <form>
+                                                                <div className="relative mb-4">
+                                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                        <IconUser className="h-5 w-5" />
+                                                                    </span>
+                                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                </div>
+                                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                                <button type="button" className="btn btn-primary w-full">
+                                                                    Submit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                                    </DialogPanel>
+                                                </TransitionChild>
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </Transition>
+                            </div>
                         </div>
                     </div>
 
@@ -1045,9 +1229,103 @@ const ComponentsWidgets = () => {
                                     <IconCreditCard />
                                 </button>
                             </div> */}
-                            <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
+                            {/* <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
                                 Update
-                            </button>
+                            </button> */}
+
+                            {/* Register */}
+                            <div>
+                                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                                    Update
+                                </button>
+                                <Transition appear show={modal21} as={Fragment}>
+                                    <Dialog
+                                        as="div"
+                                        open={modal21}
+                                        onClose={() => {
+                                            setModal21(false);
+                                        }}
+                                    >
+                                        <TransitionChild
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <div className="fixed inset-0" />
+                                        </TransitionChild>
+                                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                            <div className="flex min-h-screen items-start justify-center px-4">
+                                                <TransitionChild
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 scale-95"
+                                                    enterTo="opacity-100 scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 scale-100"
+                                                    leaveTo="opacity-0 scale-95"
+                                                >
+                                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                            <h5>Update Cards</h5>
+                                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                <IconX />
+                                                            </button>
+                                                        </div>
+                                                        <div className="p-5">
+                                                            <form>
+                                                                <div className="relative mb-4">
+                                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                        <IconUser className="h-5 w-5" />
+                                                                    </span>
+                                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                </div>
+                                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                                <button type="button" className="btn btn-primary w-full">
+                                                                    Submit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                                    </DialogPanel>
+                                                </TransitionChild>
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </Transition>
+                            </div>
                         </div>
                     </div>
 
@@ -1074,9 +1352,103 @@ const ComponentsWidgets = () => {
                                     <IconCreditCard />
                                 </button>
                             </div> */}
-                            <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
+                            {/* <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
                                 Update
-                            </button>
+                            </button> */}
+
+                            {/* Register */}
+                            <div>
+                                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                                    Update
+                                </button>
+                                <Transition appear show={modal21} as={Fragment}>
+                                    <Dialog
+                                        as="div"
+                                        open={modal21}
+                                        onClose={() => {
+                                            setModal21(false);
+                                        }}
+                                    >
+                                        <TransitionChild
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <div className="fixed inset-0" />
+                                        </TransitionChild>
+                                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                            <div className="flex min-h-screen items-start justify-center px-4">
+                                                <TransitionChild
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 scale-95"
+                                                    enterTo="opacity-100 scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 scale-100"
+                                                    leaveTo="opacity-0 scale-95"
+                                                >
+                                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                            <h5>Update Cards</h5>
+                                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                <IconX />
+                                                            </button>
+                                                        </div>
+                                                        <div className="p-5">
+                                                            <form>
+                                                                <div className="relative mb-4">
+                                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                        <IconUser className="h-5 w-5" />
+                                                                    </span>
+                                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                </div>
+                                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                                <button type="button" className="btn btn-primary w-full">
+                                                                    Submit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                                    </DialogPanel>
+                                                </TransitionChild>
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </Transition>
+                            </div>
                         </div>
                     </div>
 
@@ -1103,9 +1475,103 @@ const ComponentsWidgets = () => {
                                     <IconCreditCard />
                                 </button>
                             </div> */}
-                            <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
+                            {/* <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
                                 Update
-                            </button>
+                            </button> */}
+
+                            {/* Register */}
+                            <div>
+                                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                                    Update
+                                </button>
+                                <Transition appear show={modal21} as={Fragment}>
+                                    <Dialog
+                                        as="div"
+                                        open={modal21}
+                                        onClose={() => {
+                                            setModal21(false);
+                                        }}
+                                    >
+                                        <TransitionChild
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <div className="fixed inset-0" />
+                                        </TransitionChild>
+                                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                            <div className="flex min-h-screen items-start justify-center px-4">
+                                                <TransitionChild
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 scale-95"
+                                                    enterTo="opacity-100 scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 scale-100"
+                                                    leaveTo="opacity-0 scale-95"
+                                                >
+                                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                            <h5>Update Cards</h5>
+                                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                <IconX />
+                                                            </button>
+                                                        </div>
+                                                        <div className="p-5">
+                                                            <form>
+                                                                <div className="relative mb-4">
+                                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                        <IconUser className="h-5 w-5" />
+                                                                    </span>
+                                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                </div>
+                                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                                <button type="button" className="btn btn-primary w-full">
+                                                                    Submit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                                    </DialogPanel>
+                                                </TransitionChild>
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </Transition>
+                            </div>
                         </div>
                     </div>
 
@@ -1132,11 +1598,721 @@ const ComponentsWidgets = () => {
                                     <IconCreditCard />
                                 </button>
                             </div> */}
-                            <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
+                            {/* <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
                                 Update
-                            </button>
+                            </button> */}
+
+                            {/* Register */}
+                            <div>
+                                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                                    Update
+                                </button>
+                                <Transition appear show={modal21} as={Fragment}>
+                                    <Dialog
+                                        as="div"
+                                        open={modal21}
+                                        onClose={() => {
+                                            setModal21(false);
+                                        }}
+                                    >
+                                        <TransitionChild
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <div className="fixed inset-0" />
+                                        </TransitionChild>
+                                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                            <div className="flex min-h-screen items-start justify-center px-4">
+                                                <TransitionChild
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 scale-95"
+                                                    enterTo="opacity-100 scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 scale-100"
+                                                    leaveTo="opacity-0 scale-95"
+                                                >
+                                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                            <h5>Update Cards</h5>
+                                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                <IconX />
+                                                            </button>
+                                                        </div>
+                                                        <div className="p-5">
+                                                            <form>
+                                                                <div className="relative mb-4">
+                                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                        <IconUser className="h-5 w-5" />
+                                                                    </span>
+                                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                </div>
+                                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                                <button type="button" className="btn btn-primary w-full">
+                                                                    Submit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                                    </DialogPanel>
+                                                </TransitionChild>
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </Transition>
+                            </div>
                         </div>
                     </div>
+
+                    {/* Card 1 */}
+                    <div
+                        className="panel grid h-full grid-cols-1 content-between overflow-hidden relative before:absolute before:-right-44 before:bottom-0 before:top-0 before:m-auto before:h-96 before:w-96 before:rounded-full before:bg-[#1937cc]"
+                        style={{
+                            background: 'linear-gradient(0deg,#00c6fb -227%,#005bea)',
+                        }}
+                    >
+                        <div className="z-[7] mb-6 items-start justify-between text-white-light">
+                            <h5 className="text-lg font-semibold">Total Balance</h5>
+                            <div className="relative whitespace-nowrap text-xl">
+                                $ 41,741.42
+                                {/* <span className="mt-1 table rounded bg-[#4361ee] p-1 text-xs text-[#d3d3d3] ltr:ml-auto rtl:mr-auto">+ 2453</span> */}
+                            </div>
+                        </div>
+                        <div className="z-10 flex items-center justify-center">
+                            {/* <div className="flex items-center justify-between">
+                                <button type="button" className="place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc] ltr:mr-2 rtl:ml-2">
+                                    <IconPlus />
+                                </button>
+                                <button type="button" className="grid place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc]">
+                                    <IconCreditCard />
+                                </button>
+                            </div> */}
+                            {/* <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
+                                Update
+                            </button> */}
+
+                            {/* Register */}
+                            <div>
+                                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                                    Update
+                                </button>
+                                <Transition appear show={modal21} as={Fragment}>
+                                    <Dialog
+                                        as="div"
+                                        open={modal21}
+                                        onClose={() => {
+                                            setModal21(false);
+                                        }}
+                                    >
+                                        <TransitionChild
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <div className="fixed inset-0" />
+                                        </TransitionChild>
+                                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                            <div className="flex min-h-screen items-start justify-center px-4">
+                                                <TransitionChild
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 scale-95"
+                                                    enterTo="opacity-100 scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 scale-100"
+                                                    leaveTo="opacity-0 scale-95"
+                                                >
+                                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                            <h5>Update Cards</h5>
+                                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                <IconX />
+                                                            </button>
+                                                        </div>
+                                                        <div className="p-5">
+                                                            <form>
+                                                                <div className="relative mb-4">
+                                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                        <IconUser className="h-5 w-5" />
+                                                                    </span>
+                                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                </div>
+                                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                                <button type="button" className="btn btn-primary w-full">
+                                                                    Submit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                                    </DialogPanel>
+                                                </TransitionChild>
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </Transition>
+                            </div>
+                        </div>
+                    </div>
+
+                        {/* Card 1 */}
+                        <div
+                        className="panel grid h-full grid-cols-1 content-between overflow-hidden relative before:absolute before:-right-44 before:bottom-0 before:top-0 before:m-auto before:h-96 before:w-96 before:rounded-full before:bg-[#1937cc]"
+                        style={{
+                            background: 'linear-gradient(0deg,#00c6fb -227%,#005bea)',
+                        }}
+                    >
+                        <div className="z-[7] mb-6 items-start justify-between text-white-light">
+                            <h5 className="text-lg font-semibold">Total Balance</h5>
+                            <div className="relative whitespace-nowrap text-xl">
+                                $ 41,741.42
+                                {/* <span className="mt-1 table rounded bg-[#4361ee] p-1 text-xs text-[#d3d3d3] ltr:ml-auto rtl:mr-auto">+ 2453</span> */}
+                            </div>
+                        </div>
+                        <div className="z-10 flex items-center justify-center">
+                            {/* <div className="flex items-center justify-between">
+                                <button type="button" className="place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc] ltr:mr-2 rtl:ml-2">
+                                    <IconPlus />
+                                </button>
+                                <button type="button" className="grid place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc]">
+                                    <IconCreditCard />
+                                </button>
+                            </div> */}
+                            {/* <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
+                                Update
+                            </button> */}
+
+                            {/* Register */}
+                            <div>
+                                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                                    Update
+                                </button>
+                                <Transition appear show={modal21} as={Fragment}>
+                                    <Dialog
+                                        as="div"
+                                        open={modal21}
+                                        onClose={() => {
+                                            setModal21(false);
+                                        }}
+                                    >
+                                        <TransitionChild
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <div className="fixed inset-0" />
+                                        </TransitionChild>
+                                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                            <div className="flex min-h-screen items-start justify-center px-4">
+                                                <TransitionChild
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 scale-95"
+                                                    enterTo="opacity-100 scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 scale-100"
+                                                    leaveTo="opacity-0 scale-95"
+                                                >
+                                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                            <h5>Update Cards</h5>
+                                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                <IconX />
+                                                            </button>
+                                                        </div>
+                                                        <div className="p-5">
+                                                            <form>
+                                                                <div className="relative mb-4">
+                                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                        <IconUser className="h-5 w-5" />
+                                                                    </span>
+                                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                </div>
+                                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                                <button type="button" className="btn btn-primary w-full">
+                                                                    Submit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                                    </DialogPanel>
+                                                </TransitionChild>
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </Transition>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Card 1 */}
+                    <div
+                        className="panel grid h-full grid-cols-1 content-between overflow-hidden relative before:absolute before:-right-44 before:bottom-0 before:top-0 before:m-auto before:h-96 before:w-96 before:rounded-full before:bg-[#1937cc]"
+                        style={{
+                            background: 'linear-gradient(0deg,#00c6fb -227%,#005bea)',
+                        }}
+                    >
+                        <div className="z-[7] mb-6 items-start justify-between text-white-light">
+                            <h5 className="text-lg font-semibold">Total Balance</h5>
+                            <div className="relative whitespace-nowrap text-xl">
+                                $ 41,741.42
+                                {/* <span className="mt-1 table rounded bg-[#4361ee] p-1 text-xs text-[#d3d3d3] ltr:ml-auto rtl:mr-auto">+ 2453</span> */}
+                            </div>
+                        </div>
+                        <div className="z-10 flex items-center justify-center">
+                            {/* <div className="flex items-center justify-between">
+                                <button type="button" className="place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc] ltr:mr-2 rtl:ml-2">
+                                    <IconPlus />
+                                </button>
+                                <button type="button" className="grid place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc]">
+                                    <IconCreditCard />
+                                </button>
+                            </div> */}
+                            {/* <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
+                                Update
+                            </button> */}
+
+                            {/* Register */}
+                            <div>
+                                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                                    Update
+                                </button>
+                                <Transition appear show={modal21} as={Fragment}>
+                                    <Dialog
+                                        as="div"
+                                        open={modal21}
+                                        onClose={() => {
+                                            setModal21(false);
+                                        }}
+                                    >
+                                        <TransitionChild
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <div className="fixed inset-0" />
+                                        </TransitionChild>
+                                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                            <div className="flex min-h-screen items-start justify-center px-4">
+                                                <TransitionChild
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 scale-95"
+                                                    enterTo="opacity-100 scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 scale-100"
+                                                    leaveTo="opacity-0 scale-95"
+                                                >
+                                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                            <h5>Update Cards</h5>
+                                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                <IconX />
+                                                            </button>
+                                                        </div>
+                                                        <div className="p-5">
+                                                            <form>
+                                                                <div className="relative mb-4">
+                                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                        <IconUser className="h-5 w-5" />
+                                                                    </span>
+                                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                </div>
+                                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                                <button type="button" className="btn btn-primary w-full">
+                                                                    Submit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                                    </DialogPanel>
+                                                </TransitionChild>
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </Transition>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Card 1 */}
+                    <div
+                        className="panel grid h-full grid-cols-1 content-between overflow-hidden relative before:absolute before:-right-44 before:bottom-0 before:top-0 before:m-auto before:h-96 before:w-96 before:rounded-full before:bg-[#1937cc]"
+                        style={{
+                            background: 'linear-gradient(0deg,#00c6fb -227%,#005bea)',
+                        }}
+                    >
+                        <div className="z-[7] mb-6 items-start justify-between text-white-light">
+                            <h5 className="text-lg font-semibold">Total Balance</h5>
+                            <div className="relative whitespace-nowrap text-xl">
+                                $ 41,741.42
+                                {/* <span className="mt-1 table rounded bg-[#4361ee] p-1 text-xs text-[#d3d3d3] ltr:ml-auto rtl:mr-auto">+ 2453</span> */}
+                            </div>
+                        </div>
+                        <div className="z-10 flex items-center justify-center">
+                            {/* <div className="flex items-center justify-between">
+                                <button type="button" className="place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc] ltr:mr-2 rtl:ml-2">
+                                    <IconPlus />
+                                </button>
+                                <button type="button" className="grid place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc]">
+                                    <IconCreditCard />
+                                </button>
+                            </div> */}
+                            {/* <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
+                                Update
+                            </button> */}
+
+                            {/* Register */}
+                            <div>
+                                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                                    Update
+                                </button>
+                                <Transition appear show={modal21} as={Fragment}>
+                                    <Dialog
+                                        as="div"
+                                        open={modal21}
+                                        onClose={() => {
+                                            setModal21(false);
+                                        }}
+                                    >
+                                        <TransitionChild
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <div className="fixed inset-0" />
+                                        </TransitionChild>
+                                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                            <div className="flex min-h-screen items-start justify-center px-4">
+                                                <TransitionChild
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 scale-95"
+                                                    enterTo="opacity-100 scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 scale-100"
+                                                    leaveTo="opacity-0 scale-95"
+                                                >
+                                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                            <h5>Update Cards</h5>
+                                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                <IconX />
+                                                            </button>
+                                                        </div>
+                                                        <div className="p-5">
+                                                            <form>
+                                                                <div className="relative mb-4">
+                                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                        <IconUser className="h-5 w-5" />
+                                                                    </span>
+                                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                </div>
+                                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                                <button type="button" className="btn btn-primary w-full">
+                                                                    Submit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                                    </DialogPanel>
+                                                </TransitionChild>
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </Transition>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Card 1 */}
+                    <div
+                        className="panel grid h-full grid-cols-1 content-between overflow-hidden relative before:absolute before:-right-44 before:bottom-0 before:top-0 before:m-auto before:h-96 before:w-96 before:rounded-full before:bg-[#1937cc]"
+                        style={{
+                            background: 'linear-gradient(0deg,#00c6fb -227%,#005bea)',
+                        }}
+                    >
+                        <div className="z-[7] mb-6 items-start justify-between text-white-light">
+                            <h5 className="text-lg font-semibold">Total Balance</h5>
+                            <div className="relative whitespace-nowrap text-xl">
+                                $ 41,741.42
+                                {/* <span className="mt-1 table rounded bg-[#4361ee] p-1 text-xs text-[#d3d3d3] ltr:ml-auto rtl:mr-auto">+ 2453</span> */}
+                            </div>
+                        </div>
+                        <div className="z-10 flex items-center justify-center">
+                            {/* <div className="flex items-center justify-between">
+                                <button type="button" className="place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc] ltr:mr-2 rtl:ml-2">
+                                    <IconPlus />
+                                </button>
+                                <button type="button" className="grid place-content-center rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#1937cc]">
+                                    <IconCreditCard />
+                                </button>
+                            </div> */}
+                            {/* <button type="button" className="z-10 rounded p-1 text-white-light shadow-[0_0_2px_0_#bfc9d4] hover:bg-[#4361ee]">
+                                Update
+                            </button> */}
+
+                            {/* Register */}
+                            <div>
+                                <button type="button" onClick={() => setModal21(true)} className="btn btn-danger">
+                                    Update
+                                </button>
+                                <Transition appear show={modal21} as={Fragment}>
+                                    <Dialog
+                                        as="div"
+                                        open={modal21}
+                                        onClose={() => {
+                                            setModal21(false);
+                                        }}
+                                    >
+                                        <TransitionChild
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <div className="fixed inset-0" />
+                                        </TransitionChild>
+                                        <div id="register_modal" className="fixed inset-0 z-[999] overflow-y-auto bg-[black]/60">
+                                            <div className="flex min-h-screen items-start justify-center px-4">
+                                                <TransitionChild
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0 scale-95"
+                                                    enterTo="opacity-100 scale-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100 scale-100"
+                                                    leaveTo="opacity-0 scale-95"
+                                                >
+                                                    <DialogPanel className="panel my-8 w-full max-w-sm overflow-hidden rounded-lg border-0 px-4 py-1 text-black dark:text-white-dark">
+                                                        <div className="flex items-center justify-between p-5 text-lg font-semibold dark:text-white">
+                                                            <h5>Update Cards</h5>
+                                                            <button type="button" onClick={() => setModal21(false)} className="text-white-dark hover:text-dark">
+                                                                <IconX />
+                                                            </button>
+                                                        </div>
+                                                        <div className="p-5">
+                                                            <form>
+                                                                <div className="relative mb-4">
+                                                                    <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                        <IconUser className="h-5 w-5" />
+                                                                    </span>
+                                                                    <input type="text" placeholder="Card Name" className="form-input ltr:pl-10 rtl:pr-10" id="name" />
+                                                                </div>
+                                                                {/* <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconAt />
+                                                            </span>
+                                                            <input type="email" placeholder="Email" className="form-input ltr:pl-10 rtl:pr-10" id="email" />
+                                                        </div>
+                                                        <div className="relative mb-4">
+                                                            <span className="absolute top-1/2 -translate-y-1/2 ltr:left-3 rtl:right-3 dark:text-white-dark">
+                                                                <IconLock className="h-5 w-5" />
+                                                            </span>
+                                                            <input type="password" placeholder="Password" className="form-input ltr:pl-10 rtl:pr-10" id="password" />
+                                                        </div> */}
+                                                                <button type="button" className="btn btn-primary w-full">
+                                                                    Submit
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {/* <div className="my-4 text-center text-xs text-white-dark dark:text-white-dark/70">OR</div> */}
+                                                        {/* <div className="mb-5 flex items-center justify-center gap-3">
+                                                    <button type="button" className="btn btn-outline-primary flex gap-1">
+                                                        <IconFacebook className="h-5 w-5 shrink-0" />
+                                                        <span>Facebook</span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-danger flex gap-1">
+                                                        <IconGithub className="shrink-0" />
+                                                        <span>Github</span>
+                                                    </button>
+                                                </div> */}
+                                                        {/* <div className="border-t border-[#ebe9f1] p-5 dark:border-white/10">
+                                                    <p className="text-center text-sm text-white-dark dark:text-white-dark/70">
+                                                        Already have
+                                                        <button type="button" className="text-[#515365] hover:underline ltr:ml-1 rtl:mr-1 dark:text-white-dark">
+                                                            Login?
+                                                        </button>
+                                                    </p>
+                                                </div> */}
+                                                    </DialogPanel>
+                                                </TransitionChild>
+                                            </div>
+                                        </div>
+                                    </Dialog>
+                                </Transition>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
